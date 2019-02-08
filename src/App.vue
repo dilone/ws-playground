@@ -131,4 +131,8 @@ html {
 .result-box .content .field p {
     padding-left: 1rem;
 }
+.footer {
+    background-color: #e7ecf0;
+    padding: 2rem 1.5rem 1rem;
+}
 </style>
