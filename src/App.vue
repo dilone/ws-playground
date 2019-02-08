@@ -89,6 +89,10 @@ export default {
                 this.connected = false;
                 this.ws.close();
             };
+            this.ws.onerror = e => {
+                this.connected = false;
+                this.ws.close();
+            };
         },
         stopWebSocket() {
             this.ws.close();
