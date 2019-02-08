@@ -24,3 +24,8 @@ yarn test
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Build with
+- [VueJS](https://github.com/vuejs/vue)
+- [WebSocket API](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API)
+- [Bulma](https://github.com/jgthms/bulma/)
