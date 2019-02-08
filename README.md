@@ -1,4 +1,6 @@
-# websocket
+# websocket playground
+
+This is just a test page for your WebSocket's.
 
 ## Project setup
 ```
@@ -7,22 +9,17 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn run serve
+yarn serve
 ```
 
 ### Compiles and minifies for production
 ```
-yarn run build
+yarn build
 ```
 
 ### Run your tests
 ```
-yarn run test
-```
-
-### Lints and fixes files
-```
-yarn run lint
+yarn test
 ```
 
 ### Customize configuration
