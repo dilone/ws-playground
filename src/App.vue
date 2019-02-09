@@ -26,10 +26,10 @@
                             <input type="text" v-model="socket_path" placeholder="ws://127.0.0.1:3000/ws" class="input">
                         </p>
                         <p class="control is-marginless" v-show="!connected">
-                            <button class="button is-primary" @click="startWebSocket()">Connect&nbsp;&nbsp;<i class="fas fa-plug"></i></button>
+                            <button class="button is-primary" @click="startWebSocket()"><i class="fas fa-plug"></i>&nbsp;&nbsp;Connect</button>
                         </p>
                         <p class="control is-marginless" v-show="connected">
-                            <button class="button is-danger" @click="stopWebSocket()">Disconnect&nbsp;&nbsp;<i class="fas fa-power-off"></i></button>
+                            <button class="button is-danger" @click="stopWebSocket()"><i class="fas fa-power-off"></i>&nbsp;&nbsp;Disconnect</button>
                         </p>
                     </div>
                     <div class="field" v-if="connected">
@@ -43,7 +43,7 @@
                             <input type="text" class="input" v-model="message">
                         </p>
                         <p class="control">
-                            <button class="button" @click="sendMessage()">Send &nbsp;&nbsp;<i class="fas fa-paper-plane"></i></button>
+                            <button class="button" @click="sendMessage()"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send</button>
                         </p>
                     </div>
                 </div>
