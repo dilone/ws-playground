@@ -32,27 +32,27 @@
                     </div>
                     <div class="field is-grouped">
                         <p class="control is-expanded">
-                            <input type="text" v-model="socket_path" placeholder="ws://127.0.0.1:3000/ws" class="input">
+                            <input type="text" v-model="socket_path" placeholder="ws://127.0.0.1:3000/ws" class="input" :disabled="connected">
                         </p>
                         <p class="control is-marginless" v-show="!connected">
-                            <button class="button is-primary" @click="startWebSocket()"><i class="fas fa-plug"></i>&nbsp;&nbsp;Connect</button>
+                            <button class="button is-primary" @click="validateWebSocket()"><i class="fas fa-plug"></i>&nbsp;&nbsp;Connect</button>
                         </p>
                         <p class="control is-marginless" v-show="connected">
                             <button class="button is-danger" @click="stopWebSocket()"><i class="fas fa-power-off"></i>&nbsp;&nbsp;Disconnect</button>
                         </p>
                     </div>
-                    <div class="field" v-if="connected">
+                    <div class="field">
                         <p class="control is-expanded">
                             <label class="label">Message</label>
                         </p>
                     </div>
 
-                    <div class="field is-grouped" v-if="connected">
+                    <div class="field is-grouped">
                         <p class="control is-expanded">
-                            <input type="text" class="input" v-model="message">
+                            <input type="text" class="input" v-model="message" :disabled="!connected">
                         </p>
                         <p class="control">
-                            <button class="button" @click="sendMessage()"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send</button>
+                            <button class="button" @click="sendMessage()" :disabled="!connected"><i class="fas fa-paper-plane"></i>&nbsp;&nbsp;Send</button>
                         </p>
                     </div>
                 </div>
@@ -98,34 +98,33 @@ export default {
         }
     },
     methods: {
-        startWebSocket() {
+        validateWebSocket() {
             if (this.socket_path && this.socket_path.trim().length) {
-                this.newSocket()
+                this.startWebSocket()
             } else {
                 this.results.push('INVALID SOCKET URL');
             }
         },
-        newSocket() {
+        startWebSocket() {
             this.ws = new WebSocket(this.socket_path);
-            this.ws.onopen = event => {
-                this.results.push("CONNECTED");
+            this.ws.onopen = () => {
+                this.results.push('CONNECTED');
                 this.connected = true;
             };
             this.ws.onmessage = event => {
                 this.results.push(JSON.stringify(event.data));
             };
-            this.ws.onclose = e => {
-                this.results.push(e);
-                this.connected = false;
-                this.ws.close();
+            this.ws.onclose = () => {
+                this.results.push('DISCONNECTED');
+                this.stopWebSocket();
             };
-            this.ws.onerror = e => {
-                this.results.push(e);
-                this.connected = false;
-                this.ws.close();
+            this.ws.onerror = event => {
+                this.results.push(JSON.stringify(event.data));
+                this.stopWebSocket();
             };
         },
         stopWebSocket() {
+            this.connected = false;
             this.ws.close();
         },
         sendMessage() {
@@ -147,10 +146,11 @@ html {
 .result-box .content {
     border: 2px solid #dbdbdb;
     border-radius: 2px;
-    padding: 1rem 0rem;
+    padding: 0rem;
     height: 40vh;
     overflow: scroll;
     overflow-x: hidden;
+    background-color: #f7f7f7;
 }
 
 .result-box label span {
