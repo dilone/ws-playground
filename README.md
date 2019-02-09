@@ -1,29 +1,44 @@
 # websocket playground
 
-This is just a test page for your WebSocket's.
+Playground to test HTML5 WebSocket connections, it was inspired by [websocket.org Echo](http://www.websocket.org/echo.html). 
+
+what can i do? you can see a list of messages from the server that you're connected, is limited to the last 20 messages. also you can send messages to the server from the second input box.
+
+## Demo
+
+[Websocket Playground](https://ws-playground.netlify.com)
 
 ## Project setup
+
+Clone the repo to your computer
 ```
+git clone https://github.com/cuatrokb/ws-playground.git
+```
+
+Install dependencies
+ ```
 yarn install
 ```
 
-### Compiles and hot-reloads for development
+Compiles and hot-reloads for development on your local computer
 ```
 yarn serve
 ```
 
-### Compiles and minifies for production
+Compiles and minifies for production
 ```
 yarn build
 ```
 
-### Run your tests
+Run your tests
 ```
 yarn test
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## To do
+- add socket.io support
+- display websocket code implementation
+- add style to the output box
 
 ### Build with
 - [VueJS](https://github.com/vuejs/vue)
