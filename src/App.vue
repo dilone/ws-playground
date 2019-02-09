@@ -84,7 +84,7 @@ export default {
     data() {
         return {
             ws: null,
-            socket_path: 'ws://echo.websocket.org',
+            socket_path: 'wss://echo.websocket.org',
             connected: false,
             message: 'OMG! HTML5 WebSocket works',
             results: [],
